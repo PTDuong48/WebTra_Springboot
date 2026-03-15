@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main-layout :: layout('Tất cả sản phẩm - Trà Thơm', ~{::div.content-wrapper})}">
+<body>
+    <div class="content-wrapper min-h-screen bg-background-light dark:bg-slate-900 text-slate-900 dark:text-slate-100 pb-20">
+        
+        <!-- Page Header -->
+        <div class="bg-primary pt-12 pb-8 px-4 sm:px-6 lg:px-8 text-center text-white relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            <div class="relative z-10">
+                <h1 class="text-3xl sm:text-4xl font-bold font-display mb-4">Sản Phẩm Trà Thơm</h1>
+                <p class="max-w-2xl mx-auto text-white/80">Khám phá bộ sưu tập trà thượng hạng, từ những nõn chè tươi non nhất đến những búp trà cổ thụ trứ danh.</p>
+                <div class="flex items-center justify-center gap-2 mt-6 text-sm">
+                    <a th:href="@{/}" class="hover:text-white/80 transition-colors">Trang chủ</a>
+                    <span class="material-symbols-outlined text-xs text-white/50">chevron_right</span>
+                    <span class="font-medium">Sản phẩm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Layout -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <!-- Sidebar (Filters) -->
+                <aside class="w-full lg:w-1/4">
+                    <!-- Mobile Filter Toggle -->
+                    <button class="lg:hidden w-full flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 font-semibold mb-4" onclick="document.getElementById('mobile-filters').classList.toggle('hidden')">
+                        <span class="flex items-center gap-2"><span class="material-symbols-outlined">tune</span> Bộ Lọc</span>
+                        <span class="material-symbols-outlined">expand_more</span>
+                    </button>
+                    
+                    <div id="mobile-filters" class="hidden lg:block space-y-6">
+                        <!-- Search Box -->
+                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">search</span>
+                                Tìm kiếm
+                            </h3>
+                            <div class="relative">
+                                <input type="text" placeholder="Tên trà, loại trà..." class="w-full pl-4 pr-10 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm transition-all dark:text-white">
+                                <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">category</span>
+                                Danh mục
+                            </h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer" checked>
+                                        <span class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors font-medium">Tất cả trà</span>
+                                        <span class="ml-auto text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 py-1 px-2 rounded-full">124</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer">
+                                        <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Trà Xanh</span>
+                                        <span class="ml-auto text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 py-1 px-2 rounded-full">45</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer">
+                                        <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Trà Oolong</span>
+                                        <span class="ml-auto text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 py-1 px-2 rounded-full">32</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer">
+                                        <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Trà Đen</span>
+                                        <span class="ml-auto text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 py-1 px-2 rounded-full">18</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer">
+                                        <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Trà Thảo Mộc</span>
+                                        <span class="ml-auto text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 py-1 px-2 rounded-full">29</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">payments</span>
+                                Khoảng giá
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between text-sm text-primary font-semibold">
+                                    <span>50.000đ</span>
+                                    <span>2.000.000đ+</span>
+                                </div>
+                                <!-- Custom Range Slider -->
+                                <div class="relative h-2 bg-slate-200 dark:bg-slate-700 rounded-full">
+                                    <div class="absolute inset-y-0 left-0 right-1/4 bg-primary rounded-full"></div>
+                                    <div class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-5 h-5 bg-white border-2 border-primary rounded-full shadow cursor-grab"></div>
+                                    <div class="absolute top-1/2 left-3/4 -translate-y-1/2 translate-x-1/2 w-5 h-5 bg-white border-2 border-primary rounded-full shadow cursor-grab"></div>
+                                </div>
+                                <div class="flex gap-4 pt-2">
+                                    <input type="number" placeholder="Từ" class="w-full h-10 px-3 rounded text-sm border border-slate-200 dark:border-slate-700 bg-transparent text-center">
+                                    <input type="number" placeholder="Đến" class="w-full h-10 px-3 rounded text-sm border border-slate-200 dark:border-slate-700 bg-transparent text-center">
+                                </div>
+                                <button class="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white text-slate-700 dark:text-slate-300 font-semibold rounded-lg transition-colors border border-transparent hover:border-primary">
+                                    Áp dụng
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Formats -->
+                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">inventory_2</span>
+                                Dạng trà
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="format" class="peer sr-only" checked>
+                                    <span class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm font-medium peer-checked:bg-primary peer-checked:text-white transition-colors border border-transparent peer-checked:border-primary">Lá rời</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="format" class="peer sr-only">
+                                    <span class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">Túi lọc (Kim tự tháp)</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="format" class="peer sr-only">
+                                    <span class="inline-block px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">Bánh trà ép</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Brand Ad (Optional) -->
+                        <div class="rounded-xl overflow-hidden relative aspect-[4/3] group hidden lg:block">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB21J1P2J8tiHf19Nx9cMLMc2_ZlB9htzbuidActGcEf-AnsSk_wc6a0vrcZc_RrO3WgrJKPDOtoEZkvqThhw0-XAdLLIO6sTHZekvmgKFt_T7q8wIFElJ53IIxG0d-Zw6rIHVpFYlEgVGlsjCJ13qPPVf0NzGQcr5pJuD9Mfi7SHFbvAWJlN1cY-n0ZxwLTrUsNeIp4lO9JwWESNLjoBO_dQzbv0UBKX8QDgDkl_BObukAxkp5llPBkUkfsmCl4i1zLX5HrSIYx7s" alt="Banner Quà Tặng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex flex-col justify-end p-5 text-white">
+                                <span class="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded w-max mb-2">Bộ quà tặng</span>
+                                <h4 class="font-bold text-lg leading-tight mb-2">Sang Trọng &amp; Ý Nghĩa</h4>
+                                <a href="#" class="text-sm font-semibold flex items-center hover:text-accent transition-colors">
+                                    Xem ngay <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <!-- Product Grid Area -->
+                <div class="w-full lg:w-3/4">
+                    
+                    <!-- Top Actions Bar -->
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 relative z-10">
+                        <p class="text-slate-500 font-medium">Hiển thị <span class="text-slate-900 dark:text-white font-bold">1-12</span> trong số <span class="text-slate-900 dark:text-white font-bold">124</span> sản phẩm</p>
+                        
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <label class="text-sm text-slate-500 whitespace-nowrap">Sắp xếp theo:</label>
+                            <div class="relative flex-grow sm:flex-grow-0">
+                                <select class="w-full sm:w-48 appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-2 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm font-medium">
+                                    <option>Bán chạy nhất</option>
+                                    <option>Sản phẩm mới</option>
+                                    <option>Giá: Thấp đến Cao</option>
+                                    <option>Giá: Cao xuống Thấp</option>
+                                    <option>Đánh giá cao nhất</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+                            </div>
+                            <!-- View Toggles -->
+                            <div class="hidden sm:flex bg-slate-100 dark:bg-slate-900 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+                                <button class="p-1 bg-white dark:bg-slate-700 text-primary rounded shadow-sm">
+                                    <span class="material-symbols-outlined text-lg">grid_view</span>
+                                </button>
+                                <button class="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors rounded">
+                                    <span class="material-symbols-outlined text-lg">view_list</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Grid (3 columns on large, 2 on medium, 1 on small) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 relative z-0">
+                        
+                        <!-- Item 1 -->
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-700/50 transition-all duration-300 group flex flex-col h-full">
+                            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Sry1OflS-FivUSo57XzgDyt2YYrAit1-Nh0yM7Hc8RqWUitB_UErnlRfHAk1hZRhGQapTC1bM9yfEDBYmTKdh9mwjYN_qF8Lyft_c5gQDeUiOXiPJUD5RFqlEiwPtVVnQ8AVdwL1R86rCgBV28Aop_XBDFS3bE9ZZDZl9-1z27c9pLukF7ovSK1aLaemDnAaoml0b1lnM7hfyN6jhxj90Ct1s5EwUzR7TjyZ0Y9MsHBCGvtdokut7rDnX9Tj3iD5oIq3NsP_11k" alt="Trà Xanh Thái Nguyên" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                    Mới
+                                </div>
+                                <!-- Quick actions overlay -->
+                                <div class="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
+                                    <button class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem nhanh">
+                                        <span class="material-symbols-outlined text-xl">visibility</span>
+                                    </button>
+                                    <a th:href="@{/product-detail}" class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem chi tiết">
+                                        <span class="material-symbols-outlined text-xl">link</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <div class="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Trà Xanh</div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 line-clamp-2 hover:text-primary transition-colors cursor-pointer"><a th:href="@{/product-detail}">Trà Xanh Nõn Tôm Thái Nguyên (Đặc Sản)</a></h3>
+                                
+                                <div class="flex items-center gap-1 mb-3">
+                                    <div class="flex text-amber-400 text-sm">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 ml-1">(48)</span>
+                                </div>
+
+                                <div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+                                    <div>
+                                        <p class="text-primary font-bold text-lg">250.000 đ</p>
+                                    </div>
+                                    <button class="flex items-center justify-center bg-primary/10 text-primary hover:bg-primary hover:text-white p-2.5 rounded-xl transition-all h-10 w-10 btn-add-cart group/btn">
+                                        <span class="material-symbols-outlined group-hover/btn:scale-110 transition-transform">shopping_cart_checkout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-700/50 transition-all duration-300 group flex flex-col h-full">
+                            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqEqgCUC4QSmyYLVHcbpOfhrT6p9MOmuyM32TPQ5JgysKmjzpUr_JgXdZ3Yen_PBCv9biv5cZL7bk0ICJO14iVgWUDhosfjOeqKPmsZu6QERHF3d1lULDVtRv6b6JZ4r7ymeUyLgBLDzBwvAwU-hGk_u46Cv7pncz-hsFSc6kxZeKijgC5DG6AnDKYBHhgT1zB28gh754BuES5GCG-7eJWA3Q05CGKaW08ZTZvuc0nsYmBDYOixqM3NluBHfI6OLD4rWrqiQiwNRE" alt="Trà Oolong Tứ Quý" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                    -15%
+                                </div>
+                                <!-- Quick actions overlay -->
+                                <div class="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
+                                    <button class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem nhanh">
+                                        <span class="material-symbols-outlined text-xl">visibility</span>
+                                    </button>
+                                    <a th:href="@{/product-detail}" class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem chi tiết">
+                                        <span class="material-symbols-outlined text-xl">link</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <div class="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Trà Oolong</div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 line-clamp-2 hover:text-primary transition-colors cursor-pointer"><a th:href="@{/product-detail}">Hộp Quà Trà Oolong Tứ Quý Cao Cấp</a></h3>
+                                
+                                <div class="flex items-center gap-1 mb-3">
+                                    <div class="flex text-amber-400 text-sm">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 ml-1">(120)</span>
+                                </div>
+
+                                <div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+                                    <div>
+                                        <p class="text-primary font-bold text-lg">380.000 đ</p>
+                                        <p class="text-xs text-slate-400 line-through">450.000 đ</p>
+                                    </div>
+                                    <button class="flex items-center justify-center bg-primary/10 text-primary hover:bg-primary hover:text-white p-2.5 rounded-xl transition-all h-10 w-10 group/btn">
+                                        <span class="material-symbols-outlined group-hover/btn:scale-110 transition-transform">shopping_cart_checkout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-700/50 transition-all duration-300 group flex flex-col h-full">
+                            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa-ya8BqjUunflTYQol2HdzTQmDFE7v2p6Kcs-XSA7jqUMLEd3iUiKPIg4XJdGreoeSPXp0hZt70WU5y57a4K3jbWzhlvFc7R8uUIkEIaC94fo_DuIeuhwrg-LEAwpxF7DGMaZ4d0EA4Gwc2nZJU033yzoxD7eELRav2p_FBx36kQ0tR34P795mG_GgxI_y6Dx-GWmclLDqfoZTgdfIV2Zz5yHbmzZFVNUccX3knDrjDkgS5gQhdh5iR99LA9M6031VeEI2hmH31M" alt="Trà Shan Tuyết" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                    Best Seller
+                                </div>
+                                <div class="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
+                                    <button class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem nhanh">
+                                        <span class="material-symbols-outlined text-xl">visibility</span>
+                                    </button>
+                                    <a th:href="@{/product-detail}" class="w-10 h-10 rounded-full bg-white text-slate-700 hover:text-primary hover:scale-110 shadow-lg flex items-center justify-center transition-all" title="Xem chi tiết">
+                                        <span class="material-symbols-outlined text-xl">link</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <div class="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Cổ Thụ Hà Giang</div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 line-clamp-2 hover:text-primary transition-colors cursor-pointer"><a th:href="@{/product-detail}">Trà Shan Tuyết Cổ Thụ (Rừng sương mù)</a></h3>
+                                
+                                <div class="flex items-center gap-1 mb-3">
+                                    <div class="flex text-amber-400 text-sm">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 ml-1">(256)</span>
+                                </div>
+
+                                <div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+                                    <div>
+                                        <p class="text-primary font-bold text-lg">750.000 đ</p>
+                                    </div>
+                                    <button class="flex items-center justify-center bg-primary/10 text-primary hover:bg-primary hover:text-white p-2.5 rounded-xl transition-all h-10 w-10 group/btn">
+                                        <span class="material-symbols-outlined group-hover/btn:scale-110 transition-transform">shopping_cart_checkout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 (Out of stock) -->
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-700/50 transition-all duration-300 group flex flex-col h-full opacity-70">
+                            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAryFzDow2saXZcxpnMm3aLIeYfQLY-ZPGwumzAE3y3mg0hmWDVRvZ8LfLigmu8q-21IXV917B2yEW7_xTxzAsU4ff7QoqXBSc1Tg8TOuDBuinUV289khs6re6i-R6NWST5vH94DfNKHbyxaRPtT07DX9Giw1QhrIiwSsU4SISTXugi9h_-6S9yii0rFyMGu-jldNUxgzbCG_cMzUJ9MBmdoPjNQ_1MOWCZo4X_8G11_WT2QhZT0KtnCX22yKcM3bIowupIPuk3rd0" alt="Trà Nhài" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-white/40 dark:bg-slate-900/40 backdrop-blur-[1px] flex items-center justify-center">
+                                    <span class="bg-slate-900/80 text-white font-bold px-4 py-2 rounded-lg tracking-wide shadow-md">TẠM HẾT HÀNG</span>
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <div class="text-xs text-slate-400 font-medium mb-1 uppercase tracking-wider">Trà Hoa</div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 line-clamp-2"><a th:href="@{/product-detail}">Trà Lài Xanh Ướp Hoa Tự Nhiên (100g)</a></h3>
+                                
+                                <div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+                                    <p class="text-slate-500 font-bold text-lg">120.000 đ</p>
+                                    <button class="flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-400 p-2.5 rounded-xl cursor-not-allowed h-10 w-10">
+                                        <span class="material-symbols-outlined">notifications</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-12 flex justify-center">
+                        <nav class="flex items-center gap-2">
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors disabled:opacity-50" disabled>
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-sm">1</button>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">2</button>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">3</button>
+                            <span class="text-slate-400 mx-1">...</span>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">12</button>
+                            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

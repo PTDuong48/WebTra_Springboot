@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:fragment="sidebar">
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-screen">
+    <div class="p-6 flex items-center gap-3">
+        <div class="bg-primary p-1.5 rounded-lg text-white">
+            <span class="material-symbols-outlined text-2xl">eco</span>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-primary">Trà Thơm</h1>
+    </div>
+    
+    <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+        <a th:href="@{/admin/dashboard}" 
+           th:classappend="${activePage == 'dashboard'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl">
+            <span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+        </a>
+        <a th:href="@{/admin/products}"
+           th:classappend="${activePage == 'products'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+            <span class="material-symbols-outlined">inventory_2</span>
+            Sản phẩm
+        </a>
+        <a th:href="@{/admin/categories}"
+           th:classappend="${activePage == 'categories'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+            <span class="material-symbols-outlined">category</span>
+            Danh mục
+        </a>
+        <a th:href="@{/admin/orders}"
+           th:classappend="${activePage == 'orders'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            Đơn hàng
+        </a>
+        <a th:href="@{/admin/customers}"
+           th:classappend="${activePage == 'customers'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+            <span class="material-symbols-outlined">group</span>
+            Khách hàng
+        </a>
+        <a th:href="@{/admin/reports}"
+           th:classappend="${activePage == 'reports'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+            <span class="material-symbols-outlined">analytics</span>
+            Báo cáo
+        </a>
+        
+        <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+            <p class="px-4 mb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Nội dung</p>
+            <a th:href="@{/admin/blogs}"
+               th:classappend="${activePage == 'blogs'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+                <span class="material-symbols-outlined">article</span>
+                Quản lý Blog
+            </a>
+            <a th:href="@{/admin/blog-categories}"
+               th:classappend="${activePage == 'blog-categories'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+                <span class="material-symbols-outlined">book_2</span>
+                Danh mục Blog
+            </a>
+        </div>
+        
+        <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+            <a th:href="@{/admin/settings}"
+               th:classappend="${activePage == 'settings'} ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors'"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl border border-transparent">
+                <span class="material-symbols-outlined">settings</span>
+                Cài đặt
+            </a>
+        </div>
+    </nav>
+    
+    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 m-4 rounded-xl mt-auto">
+        <p class="text-xs text-slate-500 font-medium uppercase tracking-wider mb-2">Hỗ trợ kỹ thuật</p>
+        <button class="w-full py-2 px-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors shadow-sm">
+            Liên hệ ngay
+        </button>
+    </div>
+</aside>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/admin-layout :: layout('Trà Thơm Admin - Khách hàng', 'customers', ~{::div.content-wrapper})}">
+<body>
+    <div class="content-wrapper p-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold">Quản lý khách hàng</h2>
+                <p class="text-slate-500">Xem danh sách khách hàng và lịch sử mua hàng</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div class="relative w-72">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input type="text" placeholder="Tìm kiếm khách hàng..." class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-transparent rounded-xl focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-50 dark:bg-slate-800/50">
+                            <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Khách hàng</th>
+                            <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Đơn hàng đã đặt</th>
+                            <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Tổng chi tiêu</th>
+                            <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">NA</div>
+                                    <span class="font-medium">Nguyễn Văn An</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-500">an.nguven@gmail.com</td>
+                            <td class="px-6 py-4 text-sm text-slate-500 text-center">5</td>
+                            <td class="px-6 py-4 font-semibold">1,250,000đ</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                                <button class="p-2 text-slate-400 hover:text-rose-500 transition-colors"><span class="material-symbols-outlined text-sm">block</span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

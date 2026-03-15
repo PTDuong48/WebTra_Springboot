@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/profile-layout :: layout('Địa chỉ giao hàng - Trà Thơm', 'address', ~{::div.content-wrapper})}">
+<body>
+    <div class="content-wrapper">
+        <div class="bg-surface dark:bg-slate-900 rounded-xl shadow-sm border border-primary/5 p-8 text-slate-900 dark:text-slate-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-primary/5">
+                <h2 class="text-xl font-bold">Địa chỉ giao hàng</h2>
+                <button class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-all shadow-md shadow-primary/10">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                    Thêm địa chỉ mới
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Address Item 1 (Default) -->
+                <div class="relative border-2 border-primary/20 rounded-xl p-6 bg-primary/5">
+                    <div class="absolute top-4 right-4 flex gap-2">
+                        <button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                        </button>
+                        <button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="font-bold text-slate-900 dark:text-white">Nguyễn Văn A</span>
+                        <span class="px-2 py-0.5 bg-primary text-white text-[10px] font-bold rounded uppercase">Mặc định</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                        <p class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs">call</span>
+                            0901 234 567
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-xs mt-0.5">location_on</span>
+                            <span>123 Đường Láng, Phường Láng Thượng, Quận Đống Đa, Hà Nội</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Address Item 2 -->
+                <div class="relative border border-primary/5 rounded-xl p-6 hover:border-primary/20 transition-all group">
+                    <div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                        </button>
+                        <button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="font-bold text-slate-900 dark:text-white">Trần Thị B (Văn phòng)</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                        <p class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs">call</span>
+                            0988 777 666
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-xs mt-0.5">location_on</span>
+                            <span>456 Đường Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</span>
+                        </p>
+                    </div>
+                    <button class="mt-4 text-xs font-bold text-primary hover:underline">Thiết lập mặc định</button>
+                </div>
+            </div>
+            
+            <!-- Secondary info card -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                <div class="bg-surface dark:bg-slate-900 p-4 rounded-xl border border-primary/5 flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500">Tổng đơn hàng</p>
+                        <p class="font-bold">12 đơn</p>
+                    </div>
+                </div>
+                <div class="bg-surface dark:bg-slate-900 p-4 rounded-xl border border-primary/5 flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">workspace_premium</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500">Ngày tham gia</p>
+                        <p class="font-bold">12/05/2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

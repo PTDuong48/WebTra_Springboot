@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/admin-layout :: layout('Trà Thơm Admin - Báo cáo', 'reports', ~{::div.content-wrapper})}">
+<body>
+    <div class="content-wrapper p-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold">Báo cáo doanh thu</h2>
+                <p class="text-slate-500">Phân tích hoạt động kinh doanh</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Xuất Excel</button>
+                <button class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Xuất PDF</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                <p class="text-sm font-medium text-slate-500 mb-1">Doanh thu tháng này</p>
+                <h3 class="text-2xl font-bold">45.000.000đ</h3>
+                <p class="text-emerald-500 text-xs font-semibold mt-2">+15.2% từ tháng trước</p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                <p class="text-sm font-medium text-slate-500 mb-1">Đơn hàng hoàn tất</p>
+                <h3 class="text-2xl font-bold">124</h3>
+                <p class="text-emerald-500 text-xs font-semibold mt-2">+8.4% từ tháng trước</p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                <p class="text-sm font-medium text-slate-500 mb-1">Giá trị trung bình đơn hàng</p>
+                <h3 class="text-2xl font-bold">362.000đ</h3>
+                <p class="text-rose-500 text-xs font-semibold mt-2">-2.1% từ tháng trước</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 h-96 flex flex-col items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-slate-200 mb-4">analytics</span>
+            <p class="text-slate-400 font-medium">Biểu đồ báo cáo chi tiết sẽ hiển thị ở đây</p>
+        </div>
+    </div>
+</body>
+</html>

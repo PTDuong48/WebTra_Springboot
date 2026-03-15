@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+<header class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100" data-purpose="main-header">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <!-- Brand Logo -->
+        <div class="flex-shrink-0">
+            <a th:href="@{/}" class="font-handwritten text-3xl text-sage-green" data-purpose="brand-logo">Trà Thơm</a>
+        </div>
+        <!-- Navigation Links -->
+        <ul class="hidden md:flex space-x-10 text-sm font-medium text-gray-600 uppercase tracking-wide">
+            <li><a th:href="@{/}" class="hover:text-sage-green transition-colors">TRANG CHỦ</a></li>
+            <li><a th:href="@{/products}" class="hover:text-sage-green transition-colors">SẢN PHẨM</a></li>
+            <li><a th:href="@{/story}" class="hover:text-sage-green transition-colors">CÂU CHUYỆN</a></li>
+            <li><a th:href="@{/blog}" class="hover:text-sage-green transition-colors">BLOG</a></li>
+        </ul>
+        <!-- Action Icons -->
+        <div class="flex items-center space-x-5 text-gray-600">
+            <button aria-label="Tìm kiếm" class="p-2 hover:text-sage-green">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+            <a th:href="@{/cart}" aria-label="Giỏ hàng" class="p-2 hover:text-sage-green relative">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                <span class="absolute top-1 right-1 bg-sage-green text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+            </a>
+            <a th:href="@{/login}" aria-label="Đăng nhập" class="p-2 hover:text-sage-green">
+                <span class="material-symbols-outlined">person</span>
+            </a>
+        </div>
+    </nav>
+</header>
+</html>

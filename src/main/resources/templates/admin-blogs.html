@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/admin-layout :: layout('Trà Thơm Admin - Quản lý Blog', 'blogs', ~{::div.content-wrapper})}">
+<body>
+    <div class="content-wrapper p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Quản lý bài viết</h2>
+                <p class="text-slate-500 dark:text-slate-400">Chia sẻ câu chuyện và kiến thức về trà Việt</p>
+            </div>
+            <button class="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20">
+                <span class="material-symbols-outlined">add_circle</span>
+                Viết bài mới
+            </button>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-500 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">article</span>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tổng bài viết</p>
+                        <h3 class="text-2xl font-bold">42</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-500 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">visibility</span>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Lượt xem tháng này</p>
+                        <h3 class="text-2xl font-bold">12.5k</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">forum</span>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Bình luận mới</p>
+                        <h3 class="text-2xl font-bold">18</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="relative w-full sm:w-80">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input type="text" placeholder="Tìm kiếm bài viết..." class="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-transparent rounded-2xl focus:bg-white dark:focus:bg-slate-700 focus:ring-4 focus:ring-primary/5 transition-all text-sm outline-none">
+                </div>
+                <div class="flex items-center gap-2">
+                    <select class="bg-slate-50 dark:bg-slate-800 border-transparent rounded-xl text-sm font-medium px-4 py-3 outline-none focus:ring-2 focus:ring-primary/20">
+                        <option>Tất cả danh mục</option>
+                        <option>Kiến thức trà</option>
+                        <option>Văn hóa trà</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                            <th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bài viết</th>
+                            <th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Danh mục</th>
+                            <th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ngày đăng</th>
+                            <th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Trạng thái</th>
+                            <th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-right">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden flex-shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1544787210-2213d84ad96b?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover" alt="Blog cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white line-clamp-1">Nghệ thuật thưởng trà đạo Việt Nam</h4>
+                                        <p class="text-xs text-slate-500 line-clamp-1">Khám phá nét đẹp trong văn hóa trà đạo...</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold">Văn hóa trà</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-500">12/03/2024</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">Đã đăng</span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="p-2 text-slate-400 hover:text-rose-500 transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden flex-shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1594631252845-29fc45865506?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover" alt="Blog cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white line-clamp-1">Công dụng tuyệt vời của Trà Ô Long</h4>
+                                        <p class="text-xs text-slate-500 line-clamp-1">Tìm hiểu về sức khỏe và lợi ích từ trà...</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-full text-[10px] font-bold">Kiến thức trà</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-500">10/03/2024</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Bản nháp</span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="p-2 text-slate-400 hover:text-rose-500 transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="p-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <p class="text-sm text-slate-500">Hiển thị 2 trong số 42 bài viết</p>
+                <div class="flex items-center gap-1">
+                    <button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-500 hover:bg-slate-50 transition-all">Trước</button>
+                    <button class="w-8 h-8 rounded-lg bg-primary text-white text-sm font-bold">1</button>
+                    <button class="w-8 h-8 rounded-lg text-sm font-bold text-slate-500 hover:bg-slate-50 transition-all">2</button>
+                    <button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-500 hover:bg-slate-50 transition-all">Sau</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
