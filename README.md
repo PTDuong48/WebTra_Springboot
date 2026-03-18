@@ -1,212 +1,65 @@
-Dự án WebTra_Springboot - Database Schema
 
-Tài liệu này mô tả chi tiết cấu trúc cơ sở dữ liệu (Database Schema) của dự án WebTra_Springboot, bao gồm các bảng, thuộc tính và mối quan hệ giữa chúng.
-
-1. Sơ đồ thực thể quan hệ (ERD)
-
-Hệ thống bao gồm các thực thể chính: User, Role, Category, Product, ProductWeight, ProductImage, BrewingGuide, Review, Order, OrderDetail, Blog, và BlogCategory.
-
-2. Chi tiết các bảng
-2.1. Bảng users (Thực thể User)
-
-Lưu trữ thông tin người dùng và khách hàng.
-
-id (Long, PK): Mã định danh duy nhất.
-
-full_name (String, Not Null): Họ và tên.
-
-email (String, Not Null, Unique): Địa chỉ email (dùng để đăng nhập).
-
-password (String, Not Null): Mật khẩu đã mã hóa.
-
-phone_number (String): Số điện thoại.
-
-address (String): Địa chỉ giao hàng mặc định.
-
-profile_image (String): Đường dẫn ảnh đại diện.
-
-2.2. Bảng roles (Thực thể Role)
-
-Lưu trữ các quyền trong hệ thống.
-
-id (Long, PK): Mã định danh duy nhất.
-
-name (String, Not Null, Unique): Tên quyền (ví dụ: ROLE_ADMIN, ROLE_USER).
-
-2.3. Bảng users_roles (Bảng trung gian)
-
-Thiết lập mối quan hệ Nhiều-Nhiều (Many-to-Many) giữa users và roles.
-
-user_id (FK): Liên kết tới users(id).
-
-role_id (FK): Liên kết tới roles(id).
-
-2.4. Bảng categories (Thực thể Category)
-
-Phân loại sản phẩm trà.
-
-id (Long, PK): Mã định danh duy nhất.
-
-name (String, Not Null): Tên danh mục.
-
-description (String): Mô tả danh mục.
-
-2.5. Bảng products (Thực thể Product)
-
-Lưu trữ thông tin cơ bản của sản phẩm trà.
-
-id (Long, PK): Mã định danh duy nhất.
-
-name (String, Not Null): Tên sản phẩm.
-
-description (Text): Mô tả chi tiết sản phẩm.
-
-origin (String): Nguồn gốc của trà.
-
-image_url (String): Ảnh đại diện của sản phẩm.
-
-category_id (FK): Liên kết tới categories(id).
-
-created_at (LocalDateTime): Ngày tạo sản phẩm.
-
-updated_at (LocalDateTime): Ngày cập nhật sản phẩm.
-
-2.6. Bảng product_weights (Thực thể ProductWeight)
-
-Lưu các trọng lượng khác nhau của cùng một sản phẩm.
-
-Ví dụ: 100g, 250g, 500g.
-
-id (Long, PK): Mã định danh duy nhất.
-
-product_id (FK): Liên kết tới products(id).
-
-weight (Integer): Trọng lượng của sản phẩm (gram).
-
-price (Double): Giá bán của trọng lượng này.
-
-stock (Integer): Số lượng tồn kho.
-
-created_at (LocalDateTime): Ngày tạo.
-
-2.7. Bảng product_images (Thực thể ProductImage)
-
-Lưu nhiều hình ảnh chi tiết của một sản phẩm.
-
-id (Long, PK): Mã định danh duy nhất.
-
-product_id (FK): Liên kết tới products(id).
-
-image_url (String): Đường dẫn ảnh sản phẩm.
-
-is_main (Boolean): Xác định ảnh chính của sản phẩm.
-
-sort_order (Integer): Thứ tự hiển thị ảnh.
-
-2.8. Bảng brewing_guides (Thực thể BrewingGuide)
-
-Lưu hướng dẫn pha trà cho từng sản phẩm.
-
-id (Long, PK): Mã định danh duy nhất.
-
-product_id (FK): Liên kết tới products(id).
-
-title (String): Tiêu đề hướng dẫn pha trà.
-
-content (Text): Nội dung hướng dẫn pha trà.
-
-2.9. Bảng reviews (Thực thể Review)
-
-Lưu đánh giá của khách hàng về sản phẩm.
-
-id (Long, PK): Mã định danh duy nhất.
-
-product_id (FK): Liên kết tới products(id).
-
-user_id (FK): Liên kết tới users(id).
-
-rating (Integer): Số sao đánh giá (1–5).
-
-comment (Text): Nội dung đánh giá.
-
-created_at (LocalDateTime): Ngày tạo đánh giá.
-
-2.10. Bảng orders (Thực thể Order)
-
-Lưu trữ thông tin đơn hàng.
-
-id (Long, PK): Mã định danh duy nhất.
-
-user_id (FK): Liên kết tới users(id) (người đặt hàng).
-
-order_date (LocalDateTime): Ngày giờ đặt hàng.
-
-total_amount (Double): Tổng giá trị đơn hàng.
-
-status (String): Trạng thái đơn hàng (Pending, Processing, Completed, Cancelled).
-
-shipping_address (String): Địa chỉ giao hàng.
-
-2.11. Bảng order_details (Thực thể OrderDetail)
-
-Lưu trữ chi tiết các sản phẩm trong mỗi đơn hàng.
-
-id (Long, PK): Mã định danh duy nhất.
-
-order_id (FK): Liên kết tới orders(id).
-
-product_id (FK): Liên kết tới products(id).
-
-price (Double): Giá sản phẩm tại thời điểm mua.
-
-quantity (Integer): Số lượng mua.
-
-2.12. Bảng blog_categories (Thực thể BlogCategory)
-
-Phân loại các bài viết.
-
-id (Long, PK): Mã định danh duy nhất.
-
-name (String, Not Null): Tên loại bài viết.
-
-2.13. Bảng blogs (Thực thể Blog)
-
-Lưu trữ các bài viết kiến thức và tin tức về trà.
-
-id (Long, PK): Mã định danh duy nhất.
-
-title (String, Not Null): Tiêu đề bài viết.
-
-content (Text): Nội dung chi tiết bài viết.
-
-summary (String): Tóm tắt bài viết.
-
-image_url (String): Ảnh đại diện bài viết.
-
-status (String, Not Null): Trạng thái (Published, Draft).
-
-created_at (LocalDateTime): Ngày tạo.
-
-category_id (FK): Liên kết tới blog_categories(id).
-
-3. Các mối quan hệ chính
-
-User <-> Role: Nhiều-Nhiều (Many-to-Many) thông qua bảng users_roles.
-
-Category -> Product: Một-Nhiều (One-to-Many). Một danh mục có nhiều sản phẩm.
-
-Product -> ProductWeight: Một-Nhiều (One-to-Many). Một sản phẩm có nhiều trọng lượng khác nhau.
-
-Product -> ProductImage: Một-Nhiều (One-to-Many). Một sản phẩm có nhiều hình ảnh.
-
-Product -> BrewingGuide: Một-Nhiều (One-to-Many). Một sản phẩm có thể có nhiều hướng dẫn pha trà.
-
-Product -> Review: Một-Nhiều (One-to-Many). Một sản phẩm có nhiều đánh giá từ khách hàng.
-
-User -> Order: Một-Nhiều (One-to-Many). Một người dùng có thể có nhiều đơn hàng.
-
-Order -> OrderDetail: Một-Nhiều (One-to-Many). Một đơn hàng có nhiều chi tiết sản phẩm.
-
-Product -> OrderDetail: Một-Nhiều (One-to-Many). Một sản phẩm có thể xuất hiện trong nhiều chi tiết đơn hàng.
-
-BlogCategory -> Blog: Một-Nhiều (One-to-Many). Một danh mục blog có nhiều bài viết.
+## 🚀 Hướng dẫn cài đặt và chạy bài
+
+### 1. Chuẩn bị môi trường
+- Cài đặt **JDK 17** trở lên.
+- Cài đặt **Node.js** (khuyên dùng bản LTS).
+- Cài đặt **XAMPP** (để chạy MySQL).
+
+### 2. Cài đặt Cơ sở dữ liệu
+1. Mở **XAMPP Control Panel** ,cấu hình lại port 8080: 
+- Mở XAMPP Control Panel.
+- Ở dòng Apache, nhấn nút Config -> Chọn Apache (httpd.conf).
+- Nhấn Ctrl + F tìm chữ 8080.
+- Đổi tất cả chỗ nào là 8080 thành 8082 (Ví dụ: Listen 8082 và ServerName localhost:8082).
+- Save file lại rồi nhấn Stop Apache, sau đó Start lại.
+
+2. khởi động **MySQL**.
+   ```
+4. **Cấu hình VNPAY**: (Nếu bạn dùng tài khoản Sandbox riêng, hãy cập nhật tại `com.example.WebTra_Springboot.config.VnPayConfig`).
+
+### 3. Chạy dự án
+
+**Lưu ý**: Chỉ cần thực hiện 2 bước dưới đây là bài đã hoạt động bình thường và có thể demo đầy đủ các chức năng.
+
+#### Bước 1: Chạy Backend
+Mở terminal tại thư mục gốc:
+```bash
+./mvnw spring-boot:run
+```
+*Backend sẽ chạy tại: [http://localhost:8080](http://localhost:8080)*
+
+#### Bước 2: Chạy Frontend
+1. Mở terminal mới, di chuyển vào thư mục `frontend`:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*Frontend sẽ chạy tại: [http://localhost:5173](http://localhost:5173)*
+
+---
+
+## 🛠 Bước 3
+### Thiết lập ngrok (Để nhận thông báo IPN từ VNPAY)
+Mặc dù dùng `localhost` bài vẫn chạy thanh toán bình thường,
+1. Mở terminal mới chạy lệnh: `./ngrok http 8080`
+
+
+## 📝 Tài khoản thử nghiệm ( Tự đăng kí)
+- **Admin**: `admin@example.com` / `admin123` (Tự đăng kí)
+- **User**: `user@example.com` / `user123` (Tự đăng kí)
+
+---
+
+## ⚡ Một số lưu ý khi chạy
+- Nếu gặp lỗi **Port 8080 already in use**, hãy kiểm tra xem có ứng dụng nào (như XAMPP Apache) đang chiếm cổng này không và đổi cổng hoặc tắt ứng dụng đó.
+- Khi thanh toán VNPAY trong môi trường Sandbox, hãy sử dụng **Thẻ ATM nội địa (NCB)** với thông tin:
+  - Số thẻ: `9704198526191432198`
+  - Tên chủ thẻ: `NGUYEN VAN A`
+  - Ngày phát hành: `07/15`
+  - Mã OTP: `123456`
+
+---
+
+*Chúc bạn có những giây phút trải nghiệm tuyệt vời cùng Trà Thơm!*
