@@ -40,7 +40,7 @@ const AdminCustomers = () => {
   const filteredCustomers = customers.filter(c => 
     c.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) || 
     c.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.phoneNumber?.includes(searchTerm)
+    c.phone?.includes(searchTerm)
   );
 
   if (loading) return (
@@ -133,7 +133,7 @@ const AdminCustomers = () => {
                       </div>
                       <div className="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-400">
                         <Phone className="size-3" />
-                        {user.phoneNumber || 'N/A'}
+                        {user.phone || 'N/A'}
                       </div>
                     </div>
                   </td>

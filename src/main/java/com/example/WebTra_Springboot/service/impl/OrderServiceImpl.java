@@ -57,6 +57,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order createOrder(Order order) {
+        if (order.getDetails() != null) {
+            for (OrderDetail detail : order.getDetails()) {
+                detail.setOrder(order);
+            }
+        }
+        order.setStatus("Pending");
+        return orderRepository.save(order);
+    }
+
+    @Override
     public List<Order> getOrdersByUserId(Long userId) {
         return orderRepository.findByUserId(userId);
     }

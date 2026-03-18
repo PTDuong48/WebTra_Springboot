@@ -6,6 +6,7 @@ import AdminLayout from './components/layout/AdminLayout';
 import Home from './pages/customer/Home';
 import Products from './pages/customer/Products';
 import ProductDetail from './pages/customer/ProductDetail';
+import PaymentResult from './pages/customer/PaymentResult';
 import Cart from './pages/customer/Cart';
 import Login from './pages/customer/Login';
 import Story from './pages/customer/Story';
@@ -49,6 +50,7 @@ function App() {
             <Route path="story" element={<Story />} />
             <Route path="profile" element={<Profile />} />
             <Route path="order/:id" element={<OrderDetail />} />
+            <Route path="payment-result" element={<PaymentResult />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:id" element={<BlogDetail />} />
           </Route>

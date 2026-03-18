@@ -11,12 +11,13 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { provinceApi } from '../../api/api';
+import axios from 'axios';
 
 // Re-defining icons using Lucide to match the mockup's spirit
 const Checkout = () => {
   const { cartItems, subtotal, cartCount } = useCart();
   const [shippingMethod, setShippingMethod] = useState('standard');
-  const [paymentMethod, setPaymentMethod] = useState('cod');
+  const [paymentMethod, setPaymentMethod] = useState('vnpay');
 
   // Province API states
   const [provinces, setProvinces] = useState([]);
@@ -111,6 +112,45 @@ const Checkout = () => {
     if (district) {
       const res = await provinceApi.getWards(district.code);
       setWards(res.data.wards);
+    }
+  };
+
+  const handleCheckout = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Vui lòng đăng nhập để thanh toán');
+        return;
+    }
+
+    try {
+        const fullAddress = `${formData.address}, ${formData.ward}, ${formData.district}, ${formData.province}`;
+        const response = await axios.post('/api/payment/create-payment', {
+            amount: total,
+            orderData: {
+                userId: user.id,
+                amount: total,
+                items: cartItems.map(item => ({
+                    productId: item.id,
+                    quantity: item.quantity,
+                    price: item.price
+                })),
+                shippingInfo: {
+                    fullName: formData.fullName,
+                    phone: formData.phone,
+                    email: formData.email,
+                    address: fullAddress,
+                    shippingFee: shippingFee,
+                    paymentMethod: paymentMethod
+                }
+            }
+        });
+        
+        if (response.data.url) {
+            window.location.href = response.data.url;
+        }
+    } catch (error) {
+        console.error('Lỗi tạo thanh toán:', error);
+        alert('Có lỗi xảy ra, vui lòng thử lại sau');
     }
   };
 
@@ -301,26 +341,23 @@ const Checkout = () => {
                   Phương thức thanh toán
                 </h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   {[
-                    { id: 'cod', name: 'COD (Tiền mặt)', icon: 'local_atm', desc: 'Thanh toán khi nhận hàng' },
-                    { id: 'bank', name: 'Chuyển khoản', icon: 'account_balance', desc: 'Qua số tài khoản / QR' },
-                    { id: 'momo', name: 'Ví MoMo', icon: 'momo', desc: 'Thanh toán qua ứng dụng MoMo' },
-                    { id: 'vnpay', name: 'VNPay', icon: 'vnpay', desc: 'Thanh toán qua cổng VNPay' },
+                    { id: 'vnpay', name: 'Thanh toán qua VNPAY', icon: 'vnpay', desc: 'Thanh toán bằng thẻ ATM, Visa, Master, QR Code qua cổng VNPAY' },
                   ].map(method => (
                     <label 
                       key={method.id}
-                      className={`flex items-center gap-4 p-5 border-2 rounded-2xl cursor-pointer transition-all ${
-                        paymentMethod === method.id ? 'border-[#2d5a27] bg-[#f1f8f0]/40 shadow-md' : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-[#2d5a27]/30'
-                      }`}
-                      onClick={() => setPaymentMethod(method.id)}
+                      className={`flex items-center gap-4 p-5 border-2 rounded-2xl cursor-pointer transition-all border-[#2d5a27] bg-[#f1f8f0]/40 shadow-md`}
                     >
-                      <div className={`size-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-all ${paymentMethod === method.id ? 'border-[#2d5a27] bg-[#2d5a27]' : 'border-slate-300'}`}>
-                        {paymentMethod === method.id && <div className="size-2 bg-white rounded-full"></div>}
+                      <div className={`size-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-all border-[#2d5a27] bg-[#2d5a27]`}>
+                        <div className="size-2 bg-white rounded-full"></div>
                       </div>
-                      <div>
-                        <p className="font-bold text-sm">{method.name}</p>
-                        <p className="text-[10px] text-slate-500 font-medium">{method.desc}</p>
+                      <div className="flex items-center gap-4">
+                        <img src="https://sandbox.vnpayment.vn/paymentv2/Images/brands/logo-vnpay.png" alt="VNPAY" className="h-6" />
+                        <div>
+                          <p className="font-bold text-sm">{method.name}</p>
+                          <p className="text-[10px] text-slate-500 font-medium">{method.desc}</p>
+                        </div>
                       </div>
                     </label>
                   ))}
@@ -364,8 +401,11 @@ const Checkout = () => {
                     </div>
                   </div>
 
-                  <button className="w-full bg-[#2d5a27] hover:bg-[#1e3d1a] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#2d5a27]/20 transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-xs hover:-translate-y-1">
-                    ĐẶT HÀNG NGAY
+                  <button 
+                    onClick={handleCheckout}
+                    className="w-full bg-[#2d5a27] hover:bg-[#1e3d1a] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#2d5a27]/20 transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-xs hover:-translate-y-1"
+                  >
+                    ĐẶT HÀNG QUA VNPAY
                     <ArrowRight className="size-4" />
                   </button>
 

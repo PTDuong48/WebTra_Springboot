@@ -15,7 +15,7 @@ import {
 import { useCart } from '../../context/CartContext';
 
 const Navbar = () => {
-  const { cartCount } = useCart();
+  const { cartCount, clearCart } = useCart();
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [user, setUser] = React.useState(null);
@@ -44,7 +44,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    window.dispatchEvent(new Event('authChange'));
+    window.dispatchEvent(new Event('authChange')); // trigger CartContext to reload guest cart
     navigate('/');
   };
 

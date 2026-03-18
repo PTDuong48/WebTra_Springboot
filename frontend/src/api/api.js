@@ -25,6 +25,7 @@ export const adminApi = {
     });
   },
   getOrders: () => api.get('/admin/orders'),
+  getOrderDetail: (id) => api.get(`/orders/${id}`),
   updateOrderStatus: (id, status) => api.put(`/admin/orders/${id}/status`, { status }),
   getCustomers: () => api.get('/admin/customers'),
   getCustomer: (id) => api.get(`/admin/customers/${id}`),
@@ -55,6 +56,7 @@ export const customerApi = {
   submitReview: (productId, review) => api.post(`/products/${productId}/reviews`, review),
   updateProfile: (userId, data) => api.put(`/users/${userId}`, data),
   getOrders: (userId) => api.get(`/orders/user/${userId}`),
+  getOrderDetail: (id) => api.get(`/orders/${id}`),
   changePassword: (userId, data) => api.put(`/users/${userId}/change-password`, data),
 };
 

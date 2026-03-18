@@ -388,16 +388,18 @@ const Profile = () => {
                               </div>
                               <div>
                                 <p className="font-black text-sm text-slate-900 dark:text-white uppercase tracking-tight">Đơn hàng #{order.id}</p>
-                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{new Date(order.createdAt).toLocaleDateString('vi-VN')}</p>
+                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{new Date(order.orderDate).toLocaleDateString('vi-VN')}</p>
                               </div>
                             </div>
                             <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${
-                              order.status === 'COMPLETED' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
-                              order.status === 'CANCELLED' ? 'bg-rose-50 text-rose-600 border-rose-100' :
+                              order.status === 'Completed' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                              order.status === 'Cancelled' ? 'bg-rose-50 text-rose-600 border-rose-100' :
+                              order.status === 'Processing' ? 'bg-blue-50 text-blue-600 border-blue-100' :
                               'bg-amber-50 text-amber-600 border-amber-100'
                             }`}>
-                              {order.status === 'COMPLETED' ? 'Đã hoàn thành' : 
-                               order.status === 'CANCELLED' ? 'Đã hủy' : 'Chờ xử lý'}
+                              {order.status === 'Completed' ? 'Đã hoàn thành' : 
+                               order.status === 'Cancelled' ? 'Đã hủy' : 
+                               order.status === 'Processing' ? 'Đang xử lý' : 'Chờ xử lý'}
                             </div>
                           </div>
                           

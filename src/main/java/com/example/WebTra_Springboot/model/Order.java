@@ -22,8 +22,14 @@ public class Order {
 
     private LocalDateTime orderDate;
     private Double totalAmount;
+    private Double shippingFee;
     private String status; // "Pending", "Processing", "Completed", "Cancelled"
+    private String shippingName;
+    private String shippingPhone;
+    private String shippingEmail;
     private String shippingAddress;
+    private String paymentMethod;
+    private String vnpTxnRef;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetail> details;

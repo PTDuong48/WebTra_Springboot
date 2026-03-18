@@ -11,6 +11,7 @@ public interface OrderService {
     List<Order> getLatestOrders(int limit);
     Long getTotalOrders();
     Double getTotalRevenue();
+    Order createOrder(Order order);
     List<Order> getOrdersByUserId(Long userId);
     Map<String, Double> getCategoryPerformance();
 }

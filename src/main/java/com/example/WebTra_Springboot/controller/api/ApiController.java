@@ -100,6 +100,13 @@ public class ApiController {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
     }
 
+    @GetMapping("/orders/{id}")
+    public ResponseEntity<Order> getOrder(@PathVariable Long id) {
+        Order order = orderService.getOrderById(id);
+        if (order == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(order);
+    }
+
     // ===== User Profile =====
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateProfile(@PathVariable Long id, @RequestBody User user) {
