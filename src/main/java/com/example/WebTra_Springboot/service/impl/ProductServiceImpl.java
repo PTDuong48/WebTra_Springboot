@@ -26,6 +26,32 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> searchProducts(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return new java.util.ArrayList<>();
+        }
+        
+        String[] keywords = query.toLowerCase().split("\\s+");
+        List<Product> allProducts = productRepository.findAll();
+        
+        return allProducts.stream()
+            .filter(product -> {
+                String name = (product.getName() != null ? product.getName().toLowerCase() : "");
+                String description = (product.getDescription() != null ? product.getDescription().toLowerCase() : "");
+                String content = name + " " + description;
+                
+                // Check if ALL keywords are present in name or description
+                for (String word : keywords) {
+                    if (!content.contains(word)) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }

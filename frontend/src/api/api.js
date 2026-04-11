@@ -58,7 +58,9 @@ export const customerApi = {
   getOrders: (userId) => api.get(`/orders/user/${userId}`),
   getOrderDetail: (id) => api.get(`/orders/${id}`),
   changePassword: (userId, data) => api.put(`/users/${userId}/change-password`, data),
+  searchChatbot: (query, userId, lastProductId) => api.get('/chatbot', { params: { query, userId, lastProductId } }),
 };
+
 
 export const authApi = {
   login: (credentials) => api.post('/auth/login', credentials),

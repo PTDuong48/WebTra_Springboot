@@ -19,6 +19,30 @@ public class BrewingGuideServiceImpl implements BrewingGuideService {
     }
 
     @Override
+    public List<BrewingGuide> searchGuides(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return new java.util.ArrayList<>();
+        }
+        
+        String[] keywords = query.toLowerCase().split("\\s+");
+        List<BrewingGuide> allGuides = brewingGuideRepository.findAll();
+        
+        return allGuides.stream()
+            .filter(guide -> {
+                String title = (guide.getTitle() != null ? guide.getTitle().toLowerCase() : "");
+                String content = (guide.getContent() != null ? guide.getContent().toLowerCase() : "");
+                String combined = title + " " + content;
+                
+                for (String word : keywords) {
+                    if (!combined.contains(word)) return false;
+                }
+                return true;
+            })
+            .collect(java.util.stream.Collectors.toList());
+    }
+
+
+    @Override
     public BrewingGuide getGuideById(Long id) {
         return brewingGuideRepository.findById(id).orElse(null);
     }

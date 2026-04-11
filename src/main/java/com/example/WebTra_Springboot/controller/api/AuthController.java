@@ -57,8 +57,8 @@ public class AuthController {
         newUser.setEmail(email);
         newUser.setPassword(password); 
 
-        // Gán Role mặc định nếu có
-        Optional<Role> userRoleOpt = roleRepository.findByName("USER");
+        // Gán Role mặc định: ROLE_USER
+        Optional<Role> userRoleOpt = roleRepository.findByName("ROLE_USER");
         if (userRoleOpt.isPresent()) {
             newUser.setRoles(Set.of(userRoleOpt.get()));
         }

@@ -7,7 +7,9 @@ import java.util.List;
 public interface BlogService {
     List<Blog> getAllBlogs();
     List<Blog> getBlogsByCategory(Long categoryId);
+    List<Blog> searchBlogs(String query);
     Blog getBlogById(Long id);
+
     Blog saveBlog(Blog blog);
     void deleteBlog(Long id);
     

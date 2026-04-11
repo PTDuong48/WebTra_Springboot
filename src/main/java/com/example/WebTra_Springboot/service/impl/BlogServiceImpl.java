@@ -29,6 +29,29 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<Blog> searchBlogs(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return new java.util.ArrayList<>();
+        }
+        
+        String[] keywords = query.toLowerCase().split("\\s+");
+        List<Blog> allBlogs = blogRepository.findAll();
+        
+        return allBlogs.stream()
+            .filter(blog -> {
+                String title = (blog.getTitle() != null ? blog.getTitle().toLowerCase() : "");
+                String content = (blog.getContent() != null ? blog.getContent().toLowerCase() : "");
+                String combined = title + " " + content;
+                
+                for (String word : keywords) {
+                    if (!combined.contains(word)) return false;
+                }
+                return true;
+            })
+            .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
     public Blog getBlogById(Long id) {
         return blogRepository.findById(id).orElse(null);
     }

@@ -55,7 +55,7 @@ const Navbar = () => {
     { to: "/blog", label: "Blog" },
   ];
 
-  const isAdmin = user?.roles?.some(role => role.name === 'ADMIN');
+  const isAdmin = user?.roles?.some(role => role.name === 'ADMIN' || role.name === 'ROLE_ADMIN');
 
   return (
     <nav className={`sticky top-0 left-0 w-full z-50 bg-slate-900 border-b border-white/5 transition-all duration-500 ${

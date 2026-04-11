@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Long> {
     java.util.List<Blog> findByCategoryId(Long categoryId);
+    java.util.List<Blog> findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(String title, String content);
+
 }

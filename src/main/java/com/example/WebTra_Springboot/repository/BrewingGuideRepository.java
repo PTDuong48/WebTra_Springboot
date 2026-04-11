@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BrewingGuideRepository extends JpaRepository<BrewingGuide, Long> {
+    java.util.List<BrewingGuide> findByTitleContainingIgnoreCase(String title);
 }
+
+
